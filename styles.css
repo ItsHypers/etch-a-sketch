@@ -9,17 +9,20 @@ body {
   margin-top: 30px;
 }
 .contentFlex {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-end;
   border: 5px solid black;
   border-radius: 20px;
   background-color: #395580;
-  width: 70%;
+}
+.buttons {
+  text-align: center;
+  margin-right: -20px;
 }
 .currentActive {
   color: white;
+  text-align: center;
 }
 .title {
   margin-left: 200px;
@@ -39,7 +42,7 @@ body {
   height: 500px;
   position: relative;
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid white;
 }
 #buttonSave {
   background: none;
@@ -167,11 +170,17 @@ code {
   border: 1px solid #ccc;
   background-color: #f8f9f9;
 }
-.gradientText {
-  margin-left: 25px;
-}
-.buttons {
-  margin-top: 20px;
+#picker_launcher {
+  margin: 20px 0;
+  width: 267px;
+  height: 45px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
 }
 .sizeSet {
   margin-top: 20px;

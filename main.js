@@ -66,8 +66,9 @@ function gradientToggle() {
   gradient = !gradient;
   if (gradient) {
     document.querySelector("#Gradient").textContent = "On";
+    document.querySelector(".gradientCurrent").textContent = "Gradiant: On";
   } else {
-    document.querySelector("#Gradient").textContent = "Off";
+    document.querySelector(".gradientCurrent").textContent = "Gradiant: Off";
   }
 }
 
@@ -77,7 +78,9 @@ function changeColor(choice) {
     ".currentColor"
   ).textContent = `Current Colour: ${color}`;
 }
-
+function changeHex(hex) {
+  console.log(hex);
+}
 function resetBoard() {
   let board = document.querySelector(".board");
   let squares = board.querySelectorAll("div");
@@ -113,6 +116,10 @@ document.querySelectorAll("input[type=color]").forEach(function (picker) {
 const buttonSave = document.querySelector("#buttonSave");
 buttonSave.addEventListener("click", () =>
   domtoimage
-    .toBlob(document.querySelector(".sketch-grid"))
+    .toBlob(document.querySelector(".board"))
     .then((blob) => window.saveAs(blob, "sketch.png"))
 ); // eslint-disable-line no-undef
+
+function border(picker) {
+  document.querySelector(".board").style.borderColor = picker.toString("hex");
+}

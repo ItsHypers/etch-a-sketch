@@ -7,6 +7,25 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="jscolor.js"></script>
+    <script>
+        // let's set defaults for all color pickers
+        jscolor.presets.default = {
+            width: 141,               // make the picker a little narrower
+            position: 'right',        // position it to the right of the target
+            previewPosition: 'right', // display color preview on the right
+            previewSize: 40,          // make the color preview bigger
+            palette: [
+                '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
+                '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
+                '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
+                '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
+            ],
+        };
+        </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -25,7 +44,7 @@
           </div>
         </div>
         <div class="title"><h3 style="color: white; font-size: 30px;">SketchPad</h3>
-        <button id="buttonSave" class="fa fa-download" style="color: white; background-color: none;">Download Sketch</button>
+        <p style="color: white; margin-right: 5px" class="fa fa-download"></p><button id="buttonSave" style="color: white; background-color: none;">Download Sketch</button>
         </div>
         <div class="headerTextContainer">
           <div class="headerText">
@@ -43,16 +62,22 @@
       </div>
     <div class="flex-container">
         <div class="contentFlex">
-        <div style="margin-top: -20px"class="buttons">
-            <h2 style="color: white; text-align: center;">Pen Type Toggle</h2>
-            <h3 style="margin-left: 25px; color: white">Hover -- Click</h3>
-            <label class="switch" style="margin-left: 25px">
+        <div style="margin-top: -100px;" class="buttons">
+            <h2 style="color: white;">Pen Type Toggle</h2>
+            <h3 style="color: white">Hover -- Click</h3>
+            <label class="switch">
                 <input type="checkbox" onclick="penType()">
                 <span class="slider"></span>
               </label>
               <br></br>
             <h3 style="color: white">Gradient Toggle</h3>
             <button class="gradientText" style="border-radius: 20px;" onclick="gradientToggle()"><h2 id="Gradient">Off</h2></button>
+
+            <h3 style="color: white; margin-top: 10px;">Border Colour</h3>
+            <button data-jscolor="{onInput: 'border(this)'}" value="#000000">
+                Border Colour
+            </button>
+
         </div>
       <div class="content">
         <div class="board"></div>
@@ -61,11 +86,10 @@
           <button onclick="changeColor('White')">Eraser</button>
           <button onclick="changeColor('Rainbow')">Rainbow Colours (Random)</button>
           <button onclick="resetBoard()">Reset</button>
-          <span class="color-picker">
-            <label for="colorPicker">
-              <input type="color" value="#000000" id="colorPicker">
-            </label>
-          </span>
+
+          <button data-jscolor="{onInput: 'update(this, \'#border\')'}">
+            Hex Picker
+        </button>
         </div>
         <div class="sizeSet">
             <h3 style="color: white">Change Grid Size (Default 16)</h3>
@@ -87,18 +111,20 @@
             />
             <button>Set Size</button>
           </div>
-        <div class="text">
+        <div class="text" style="text-align: center;">
             <p>Max Grid Size: 150 - Min Grid Size: 2</p>
-            <p>Max Canvas Size: 1000 (this may mess up UI, <em>zoom-out for better view)</em>- Min Canvas Size: 200</p>
+            <p>Max Canvas Size: 1000 <em style = "font-size: 15px">(this may mess up UI, zoom-out for better view)</em>  Min Canvas Size: 200</p>
             <p>Press 'Shift' to Enable/Disable the pen</p>
             <p>Hover = Colour on mouse hover</p>
             <p>Click = Colour on mouse click</p>
+            <p>Download your drawing using the download button at the top</p>
         </div>
       </div>
       <div class="currentActive">
         <h3 class="currentColor">Current Color: Black</h3>
         <h3 class="currentPen">Current Pen: Hover</h3>
         <h3 class="mode">Pen Active</h3>
+        <h3 class="gradientCurrent">Gradient: Off</h3>
       </div>
     </div>
     </div>
