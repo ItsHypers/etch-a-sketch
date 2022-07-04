@@ -35,6 +35,8 @@
 
 > Toggable Grid
 
+> Held down drawing
+
 ### ✨ [Demo](https://itshypers.github.io/etch-a-sketch/)
 
 ## Author
