@@ -47,3 +47,6 @@
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+
+Credits:
+https://github.com/bscottnz/esketch for the Fill-Color tool.
