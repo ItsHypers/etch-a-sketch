@@ -5,6 +5,28 @@
 
 > A Online based Sketch Pad with multiple features, made as practise during The Oden Project
 
+<h3 align="center"> Features</h3>
+
+> Online Sketch-Pad
+
+> Customizable Grid Size
+
+> Customizable Canvas Size
+
+> Pen Colour Change, including random rainbow colour, and hex code selection
+
+> Customizable Border Colour
+
+> Gradient Pen Tool
+
+> Pen Type Toggle (Hover colouring, click colouring)
+
+> Colour Fill Bucket Tool
+
+> Toggle pen on and off (with shift)
+
+> Sketch savable to PNG
+
 ### ✨ [Demo](https://itshypers.github.io/etch-a-sketch/)
 
 ## Author
