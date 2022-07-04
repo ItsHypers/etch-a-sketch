@@ -24,6 +24,9 @@
             </div>
           </div>
         </div>
+        <div class="title"><h3 style="color: white; font-size: 30px;">SketchPad</h3>
+        <button id="buttonSave" class="fa fa-download" style="color: white; background-color: none;">Download Sketch</button>
+        </div>
         <div class="headerTextContainer">
           <div class="headerText">
             <link>
@@ -39,19 +42,24 @@
         </div>
       </div>
     <div class="flex-container">
-      <div class="title"><h1 style="color: white">SketchPad</h1></div>
-      <div class="mode" style="color: white">Pen Active</div>
-    <div class="contentFlex">
-        <div class="buttons">
+        <div class="contentFlex">
+        <div style="margin-top: -20px"class="buttons">
+            <h2 style="color: white; text-align: center;">Pen Type Toggle</h2>
+            <h3 style="margin-left: 25px; color: white">Hover -- Click</h3>
+            <label class="switch" style="margin-left: 25px">
+                <input type="checkbox" onclick="penType()">
+                <span class="slider"></span>
+              </label>
+              <br></br>
             <h3 style="color: white">Gradient Toggle</h3>
-            <button onclick="gradientToggle()"><h2 id="Gradient">On</h2></button>
-          </div>
+            <button class="gradientText" style="border-radius: 20px;" onclick="gradientToggle()"><h2 id="Gradient">Off</h2></button>
+        </div>
       <div class="content">
         <div class="board"></div>
         <div class="buttons">
-          <button onclick="changeColor('black')">Black</button>
-          <button onclick="changeColor('white')">Eraser</button>
-          <button onclick="changeColor('random')">Random</button>
+          <button onclick="changeColor('Black')">Black</button>
+          <button onclick="changeColor('White')">Eraser</button>
+          <button onclick="changeColor('Rainbow')">Rainbow Colours (Random)</button>
           <button onclick="resetBoard()">Reset</button>
           <span class="color-picker">
             <label for="colorPicker">
@@ -80,14 +88,20 @@
             <button>Set Size</button>
           </div>
         <div class="text">
-            <p>Max Grid Size: 150</p>
-            <p>Max Canvas Size: 1000</p>
+            <p>Max Grid Size: 150 - Min Grid Size: 2</p>
+            <p>Max Canvas Size: 1000 (this may mess up UI, <em>zoom-out for better view)</em>- Min Canvas Size: 200</p>
             <p>Press 'Shift' to Enable/Disable the pen</p>
+            <p>Hover = Colour on mouse hover</p>
+            <p>Click = Colour on mouse click</p>
         </div>
+      </div>
+      <div class="currentActive">
+        <h3 class="currentColor">Current Color: Black</h3>
+        <h3 class="currentPen">Current Pen: Hover</h3>
+        <h3 class="mode">Pen Active</h3>
       </div>
     </div>
     </div>
-    <div class="footer">Website made by Ryan Thomas</div>
   </body>
   <script src="main.js"></script>
 </html>

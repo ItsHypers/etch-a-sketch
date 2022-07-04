@@ -1,6 +1,7 @@
 let color = "black";
 let click = true;
 let gradient = false;
+let hover = true;
 
 function fillBoard(size) {
   let board = document.querySelector(".board");
@@ -40,14 +41,27 @@ function colorin() {
     } else {
       this.style.opacity = "1";
     }
-    if (color == "random") {
+    if (color == "Rainbow") {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     } else {
       this.style.backgroundColor = color;
     }
   }
 }
-
+function penType() {
+  hover = !hover;
+  let board = document.querySelector(".board");
+  let squares = board.querySelectorAll("div");
+  if (hover) {
+    squares.forEach((div) => div.addEventListener("mouseover", colorin));
+    squares.forEach((div) => div.removeEventListener("click", colorin));
+    document.querySelector(".currentPen").textContent = "Current Pen: Hover";
+  } else {
+    squares.forEach((div) => div.removeEventListener("mouseover", colorin));
+    squares.forEach((div) => div.addEventListener("click", colorin));
+    document.querySelector(".currentPen").textContent = "Current Pen: Click";
+  }
+}
 function gradientToggle() {
   gradient = !gradient;
   if (gradient) {
@@ -59,6 +73,9 @@ function gradientToggle() {
 
 function changeColor(choice) {
   color = choice;
+  document.querySelector(
+    ".currentColor"
+  ).textContent = `Current Colour: ${color}`;
 }
 
 function resetBoard() {
@@ -92,3 +109,10 @@ document.querySelectorAll("input[type=color]").forEach(function (picker) {
     targetLabel.appendChild(codeArea);
   });
 });
+
+const buttonSave = document.querySelector("#buttonSave");
+buttonSave.addEventListener("click", () =>
+  domtoimage
+    .toBlob(document.querySelector(".sketch-grid"))
+    .then((blob) => window.saveAs(blob, "sketch.png"))
+); // eslint-disable-line no-undef
