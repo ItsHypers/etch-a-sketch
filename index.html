@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <title> </title>
+  </head>
+  <body>
+    <div class="Headercontainer">
+        <div class="leftContainer">
+          <div class="logoContainer">
+            <div class="logoImageContainer">
+              <img class="logoImage" src="" height="auto" />
+              <div class="logoText">
+                <h2 style="width: 200px">Ryan Thomas</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="headerTextContainer">
+          <div class="headerText">
+            <link>
+              <a class="fa fa-github" style="font-size:24px; text-decoration: none" href="https://github.com/ItsHypers">Github</a>
+            </link>
+            <link>
+            <a class="fa fa-linkedin" style="font-size:24px; text-decoration: none" href="https://www.linkedin.com/in/ryanthomas11/">Linkedin</a>
+            </link>
+            <link>
+            <a class="fa fa-codepen" style="font-size:24px; text-decoration: none" href="https://codepen.io/itshypers">Codepen</a>
+            </link>
+          </div>
+        </div>
+      </div>
+    <div class="flex-container">
+      <div class="title"><h1 style="color: white">SketchPad</h1></div>
+      <div class="mode" style="color: white">Pen Active</div>
+    <div class="contentFlex">
+        <div class="buttons">
+            <h3 style="color: white">Gradient Toggle</h3>
+            <button onclick="gradientToggle()"><h2 id="Gradient">On</h2></button>
+          </div>
+      <div class="content">
+        <div class="board"></div>
+        <div class="buttons">
+          <button onclick="changeColor('black')">Black</button>
+          <button onclick="changeColor('white')">Eraser</button>
+          <button onclick="changeColor('random')">Random</button>
+          <button onclick="resetBoard()">Reset</button>
+          <span class="color-picker">
+            <label for="colorPicker">
+              <input type="color" value="#000000" id="colorPicker">
+            </label>
+          </span>
+        </div>
+        <div class="sizeSet">
+            <h3 style="color: white">Change Grid Size (Default 16)</h3>
+          <input
+            type="text"
+            placeholder="Grid Size (Default: 16)"
+            value=""
+            onchange="boardSize(this.value)"
+          />
+          <button>Set Size</button>
+        </div>
+        <div class="gridSize">
+            <h3 style="color: white">Change Canvas Size (Default 500)</h3>
+            <input
+              type="text"
+              placeholder="Canvas Size (Default: 500)"
+              value=""
+              onchange="resizeCanvas(this.value)"
+            />
+            <button>Set Size</button>
+          </div>
+        <div class="text">
+            <p>Max Grid Size: 150</p>
+            <p>Max Canvas Size: 1000</p>
+            <p>Press 'Shift' to Enable/Disable the pen</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="footer">Website made by Ryan Thomas</div>
+  </body>
+  <script src="main.js"></script>
+</html>
