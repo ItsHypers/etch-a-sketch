@@ -5,7 +5,7 @@
 
 > A Online based Sketch Pad with multiple features, made as practise during The Oden Project
 
-### ✨ [Demo](placeholder)
+### ✨ [Demo](https://itshypers.github.io/etch-a-sketch/)
 
 ## Author
 
