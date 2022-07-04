@@ -2,6 +2,7 @@ let color = "black";
 let click = true;
 let gradient = false;
 let hover = true;
+let gridSize = 0;
 
 function fillBoard(size) {
   let board = document.querySelector(".board");
@@ -9,12 +10,14 @@ function fillBoard(size) {
   squares.forEach((div) => div.remove());
   board.style.gridTemplateColumns = `repeat(${size} , 1fr)`;
   board.style.gridTemplateRows = `repeat(${size} , 1fr)`;
-
+  gridSize = size;
   let amount = size * size;
   for (let i = 0; i < amount; i++) {
     let square = document.createElement("div");
     square.addEventListener("mouseover", colorin);
+    square.addEventListener("click", colorFill);
     square.style.backgroundColor = "white";
+    square.className = "grid-item";
     board.insertAdjacentElement("beforeend", square);
   }
 }
@@ -34,7 +37,7 @@ function boardSize(input) {
   }
 }
 
-function colorin() {
+function colorin(e) {
   if (click) {
     if (gradient) {
       this.style.opacity -= "-0.1";
@@ -45,6 +48,10 @@ function colorin() {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     } else {
       this.style.backgroundColor = color;
+      let ogIndex = Array.from(e.target.parentElement.children).indexOf(
+        e.target
+      );
+      getAround(ogIndex);
     }
   }
 }
@@ -122,4 +129,139 @@ buttonSave.addEventListener("click", () =>
 
 function border(picker) {
   document.querySelector(".board").style.borderColor = picker.toString("hex");
+}
+
+function hexChange(picker) {
+  changeColor(picker.toString("hex"));
+}
+
+function getAround(index) {
+  let around = [];
+
+  // For Edge Condition
+  index = Number(index);
+  if (isNaN(index)) {
+    throw new Error("Index should be a number.");
+  }
+
+  const leftEdge = index % gridSize === 0; // Tile on very left edge
+  const rightEdge = (index + 1) % gridSize === 0; // Tile on right edge
+  const topEdge = Math.floor(index / gridSize) === 0; // Tile on top edge
+  const bottomEdge = Math.floor(index / gridSize) === gridSize - 1; // Tile on bottom edge
+
+  if (!leftEdge) around.push(index - 1);
+  if (!rightEdge) around.push(index + 1);
+  if (!topEdge) around.push(index - gridSize);
+  if (!bottomEdge) around.push(index + gridSize);
+  console.log(around);
+  console.log(gridSize);
+  return around;
+}
+
+const colorFillButton = document.querySelector("#color-fill");
+let fill = false;
+colorFillButton.addEventListener("click", () => {
+  if (fill) {
+    fill = false;
+    click = true;
+    colorFillButton.style.backgroundColor = "white";
+    document.querySelector(".fillCurrent").textContent = "Color Fill: Off";
+  } else {
+    fill = true;
+    click = false;
+    colorFillButton.style.backgroundColor = "gray";
+    document.querySelector(".fillCurrent").textContent = "Color Fill: ON";
+  }
+});
+function toMatrix(arr, width) {
+  return arr.reduce(function (rows, key, index) {
+    return (
+      (index % width == 0
+        ? rows.push([key])
+        : rows[rows.length - 1].push(key)) && rows
+    );
+  }, []);
+}
+
+function getAdjacent1D(x, gridX, gridY) {
+  let xAbove = null;
+  let xBellow = null;
+  let xLeft = null;
+  let xRight = null;
+
+  if (gridX != 0) {
+    xAbove = [x - gridSize];
+  }
+  if (gridX != gridSize - 1) {
+    xBellow = [x + gridSize];
+  }
+  if (gridY != 0) {
+    xLeft = [x - 1];
+  }
+  if (gridY != gridSize - 1) {
+    xRight = [x + 1];
+  }
+  return [xAbove, xBellow, xLeft, xRight];
+}
+function colorFill(e) {
+  if (fill) {
+    let ogIndex = Array.from(e.target.parentElement.children).indexOf(e.target);
+
+    let toFill = [ogIndex];
+    let addedToFill = 1;
+
+    gridItems = document.querySelectorAll(".grid-item");
+    let gridItemsArray = Array.from(gridItems);
+
+    let gridItemsArray2D = toMatrix(gridItemsArray, gridSize);
+
+    let gridX = Math.floor(ogIndex / gridSize);
+    let gridY = ogIndex % gridSize;
+
+    while (addedToFill != 0) {
+      let toCheck = toFill.slice(-addedToFill);
+      let addedItems = [];
+      addedToFill = 0;
+      for (let j = 0; j < toCheck.length; j++) {
+        let toAdd = getAdjacent1D(toCheck[j], gridX, gridY);
+        for (let i = 0; i < toAdd.length; i++) {
+          if (toAdd[i] != null) {
+            if (!toFill.includes(toAdd[i][0])) {
+              if (
+                toAdd[i][0] >= 0 &&
+                toAdd[i][0] < gridSize ** 2 &&
+                typeof toAdd[i][0] == "number"
+              ) {
+                if (
+                  e.target.parentElement.children[toAdd[i][0]].style
+                    .backgroundColor == e.target.style.backgroundColor
+                ) {
+                  toFill.push(toAdd[i][0]);
+                  addedItems.push(toAdd[i][0]);
+                }
+              }
+            }
+          }
+        }
+      }
+      addedToFill = addedItems.length;
+    }
+
+    for (let i = 0; i < toFill.length; i++) {
+      if (color == "Rainbow") {
+        e.target.parentElement.children[toFill[i]].style.backgroundColor =
+          randomColor();
+      } else {
+        e.target.parentElement.children[toFill[i]].style.backgroundColor =
+          color;
+      }
+    }
+
+    colorFillButton.classList.remove("btn-on");
+  }
+}
+function randomColor() {
+  // return "#" + Math.floor(Math.random()*16777215).toString(16);
+  // this returns fewer colors but they are all nice and bright
+  return `hsl(${Math.random() * 360}, 100%, 50%)`;
 }
