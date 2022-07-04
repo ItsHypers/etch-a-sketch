@@ -43,6 +43,7 @@ body {
   position: relative;
   text-align: center;
   border: 5px solid white;
+  background-color: rgba(224, 224, 224, 0.226);
 }
 #buttonSave {
   background: none;
@@ -68,6 +69,19 @@ body {
 }
 .buttons button {
   border-radius: 10px;
+}
+
+.border-top-left {
+  border-top: 1px solid rgb(156, 156, 156);
+  border-left: 1px solid rgb(156, 156, 156);
+}
+
+.border-right {
+  border-right: 1px solid rgb(156, 156, 156);
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgb(156, 156, 156);
 }
 .leftContainer {
   display: flex;

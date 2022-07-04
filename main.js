@@ -1,9 +1,10 @@
 let color = "black";
 let click = true;
-let gradient = false;
+let opacity = false;
 let hover = true;
+let shading = false;
 let gridSize = 0;
-
+let bgColor = "#ffffff";
 function fillBoard(size) {
   let board = document.querySelector(".board");
   let squares = board.querySelectorAll("div");
@@ -32,15 +33,17 @@ function resizeCanvas(size) {
   }
 }
 function boardSize(input) {
-  if (input >= 2 || input <= 150) {
+  if (input >= 2 && input <= 150) {
     fillBoard(input);
+  } else {
+    console.log("error");
   }
 }
 
 function colorin(e) {
   if (click) {
-    if (gradient) {
-      this.style.opacity -= "-0.1";
+    if (opacity) {
+      this.style.opacity = 0;
     } else {
       this.style.opacity = "1";
     }
@@ -69,13 +72,14 @@ function penType() {
     document.querySelector(".currentPen").textContent = "Current Pen: Click";
   }
 }
-function gradientToggle() {
-  gradient = !gradient;
-  if (gradient) {
-    document.querySelector("#Gradient").textContent = "On";
-    document.querySelector(".gradientCurrent").textContent = "Gradiant: On";
+function opacityToggle() {
+  opacity = !opacity;
+  if (opacity) {
+    document.querySelector("#opacity").textContent = "On";
+    document.querySelector(".opacityCurrent").textContent = "Opacity: On";
   } else {
-    document.querySelector(".gradientCurrent").textContent = "Gradiant: Off";
+    document.querySelector("#opacity").textContent = "Off";
+    document.querySelector(".opacityCurrent").textContent = "Opacity: Off";
   }
 }
 
@@ -84,9 +88,6 @@ function changeColor(choice) {
   document.querySelector(
     ".currentColor"
   ).textContent = `Current Colour: ${color}`;
-}
-function changeHex(hex) {
-  console.log(hex);
 }
 function resetBoard() {
   let board = document.querySelector(".board");
@@ -153,8 +154,6 @@ function getAround(index) {
   if (!rightEdge) around.push(index + 1);
   if (!topEdge) around.push(index - gridSize);
   if (!bottomEdge) around.push(index + gridSize);
-  console.log(around);
-  console.log(gridSize);
   return around;
 }
 

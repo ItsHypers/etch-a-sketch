@@ -17,7 +17,7 @@
 
 > Customizable Border Colour
 
-> Gradient Pen Tool
+> Opacity Pen Tool
 
 > Pen Type Toggle (Hover colouring, click colouring)
 
@@ -26,6 +26,14 @@
 > Toggle pen on and off (with shift)
 
 > Sketch savable to PNG
+
+<h3 align="center"> Future Plans</h3>
+
+> Gradiant / Darken Tool
+
+> Lighten tool
+
+> Toggable Grid
 
 ### ✨ [Demo](https://itshypers.github.io/etch-a-sketch/)
 
