@@ -26,6 +26,7 @@ body {
 }
 .title {
   margin-left: 200px;
+  text-align: center;
 }
 .content {
   display: flex;
@@ -151,6 +152,7 @@ a:active {
 
 body {
   padding: 30px;
+  font-family: Helvetica, Arial, Sans-Serif;
 }
 
 code {

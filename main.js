@@ -5,6 +5,7 @@ let hover = true;
 let shading = false;
 let gridSize = 0;
 let bgColor = "#ffffff";
+
 function fillBoard(size) {
   let board = document.querySelector(".board");
   let squares = board.querySelectorAll("div");
@@ -23,6 +24,20 @@ function fillBoard(size) {
   }
 }
 boardSize(16);
+
+let mouseDown = false;
+window.onmousedown = () => {
+  mouseDown = true;
+  if (mouseDown) {
+    console.log("mouse button down");
+  }
+};
+window.onmouseup = () => {
+  mouseDown = false;
+  if (mouseDown) {
+    console.log("mouse button up");
+  }
+};
 function resizeCanvas(size) {
   if (size >= 200 || size <= 1000) {
     let board = document.querySelector(".board");
@@ -42,19 +57,21 @@ function boardSize(input) {
 
 function colorin(e) {
   if (click) {
-    if (opacity) {
-      this.style.opacity = 0;
-    } else {
-      this.style.opacity = "1";
-    }
-    if (color == "Rainbow") {
-      this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    } else {
-      this.style.backgroundColor = color;
-      let ogIndex = Array.from(e.target.parentElement.children).indexOf(
-        e.target
-      );
-      getAround(ogIndex);
+    if (mouseDown) {
+      if (opacity) {
+        this.style.opacity = 0;
+      } else {
+        this.style.opacity = "1";
+      }
+      if (color == "Rainbow") {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      } else {
+        this.style.backgroundColor = color;
+        let ogIndex = Array.from(e.target.parentElement.children).indexOf(
+          e.target
+        );
+        getAround(ogIndex);
+      }
     }
   }
 }
@@ -250,6 +267,8 @@ function colorFill(e) {
       if (color == "Rainbow") {
         e.target.parentElement.children[toFill[i]].style.backgroundColor =
           randomColor();
+      } else if (opacity) {
+        e.target.parentElement.children[toFill[i]].style.opacity = 0;
       } else {
         e.target.parentElement.children[toFill[i]].style.backgroundColor =
           color;
