@@ -17,7 +17,8 @@
             width: 141,               // make the picker a little narrower
             position: 'right',        // position it to the right of the target
             previewPosition: 'right', // display color preview on the right
-            previewSize: 40,          // make the color preview bigger
+            previewSize: 0,          // make the color preview bigger
+            value: '#000000',
             palette: [
                 '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
                 '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
@@ -32,7 +33,7 @@
     <title> </title>
   </head>
   <BODY ondragstart="return false;" ondrop="return false;"></BODY>
-  <body>
+  <body style="border-image-slice: 1 fill;" class="rainbow-border">
     <div class="Headercontainer">
         <div class="leftContainer">
           <div class="logoContainer">
@@ -61,38 +62,39 @@
           </div>
         </div>
       </div>
-    <div style="border-image-slice: 1 fill;" class="flex-container rainbow-border">
+    <div class="flex-container">
         <div class="contentFlex">
         <div style="margin-top: -200px; margin-left: 20px;" class="buttons">
             <h2 style="color: white;">Pen Type Toggle</h2>
-            <h3 style="color: white">Hover -- Click</h3>
-            <label class="switch">
-                <input type="checkbox" onclick="penType()">
-                <span class="slider"></span>
-              </label>
-              <br></br>
-            
-            <button class="opacityTextstyle="border-radius: 20px;" onclick="opacityToggle()">
-              <h3 style="color: white">Opacity Toggle</h3> 
-              <h2 id="opacity"> Off</h2></button>
-
-            <h3 style="color: white; margin-top: 10px;">Border Colour</h3>
-            <button data-jscolor="{onInput: 'border(this)'}" value="#000000">
-                Border Colour
-            </button>
-            <h3 style="color: white; margin-top: 10px;">Colour Fill</h3>
-            <button id="color-fill">Colour Fill</button>
+            <div class="switch-button pen-type">
+              <input class="switch-button-checkbox" type="checkbox"></input>
+              <label class="switch-button-label" for=""><span class="switch-button-label-span">Hover</span></label>
+            </div>
+              <h2 style="color: white">Opacity Toggle</h2> 
+              <div class="switch-button opacity">
+                <input class="switch-button-checkbox pen-type" type="checkbox"></input>
+                <label class="switch-button-label" for=""><span class="switch-button-label-span">Off</span></label>
+              </div>
+              <h2 style="color: white">Colour Fill Toggle</h2> 
+              <div class="switch-button fill">
+                <input class="switch-button-checkbox pen-type" type="checkbox"></input>
+                <label class="switch-button-label" for=""><span class="switch-button-label-span">Off</span></label>
+              </div>
+            <div class="buttons" style="color: white; margin-top: 20px">
+              <button class="glow-on-hover" data-jscolor="{onInput: 'border(this)'}" style="margin-left: -20px">
+                Border Picker
+            </div>
 
         </div>
       <div class="content">
         <div class="board"></div>
         <div class="buttons">
-          <button onclick="changeColor('Black')">Black</button>
-          <button onclick="changeColor('White')">Eraser</button>
-          <button onclick="changeColor('Rainbow')">Rainbow Colours (Random)</button>
-          <button onclick="resetBoard()">Reset</button>
+          <button class="glow-on-hover" onclick="changeColor('Black')">Black</button>
+          <button class="glow-on-hover" onclick="changeColor('White')">Eraser</button>
+          <button class="glow-on-hover" onclick="changeColor('Rainbow')">Rainbow Colours (Random)</button>
+          <button class="glow-on-hover" onclick="resetBoard()">Reset</button>
 
-          <button data-jscolor="{onInput: 'hexChange(this)'}" value="#000000">
+          <button value="#000000" class="glow-on-hover" data-jscolor="{onInput: 'hexChange(this)'}">
             Hex Picker
         </button>
         </div>
@@ -126,11 +128,11 @@
         </div>
       </div>
       <div class="currentActive" style="text-align: center; margin-top: -200px; margin-right: 40px;">
-        <h3 class="currentColor">Current Color: Black</h3>
-        <h3 class="currentPen">Current Pen: Hover</h3>
+        <h3 class="currentColorText">Current Color:</h3>
+        <h4 class="currentColor">Black</h4>
+        <h3 class="currentPenText">Current Pen:</h3>
+        <h4 class="currentPen">Hover</h4>
         <h3 class="mode">Pen Active</h3>
-        <h3 class="opacityCurrent">Opacity: Off</h3>
-        <h3 class="fillCurrent">Color Fill: Off</h3>
       </div>
     </div>
     </div>

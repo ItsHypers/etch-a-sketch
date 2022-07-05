@@ -76,6 +76,9 @@ function colorin() {
     }
   }
 }
+document.querySelector(".pen-type").addEventListener("click", () => {
+  penType();
+});
 function penType() {
   hover = !hover;
   let board = document.querySelector(".board");
@@ -83,29 +86,28 @@ function penType() {
   if (hover) {
     squares.forEach((div) => div.addEventListener("mouseover", colorin));
     squares.forEach((div) => div.removeEventListener("click", colorin));
-    document.querySelector(".currentPen").textContent = "Current Pen: Hover";
+    document.querySelector(".currentPen").textContent = "Hover";
   } else {
     squares.forEach((div) => div.removeEventListener("mouseover", colorin));
     squares.forEach((div) => div.addEventListener("click", colorin));
-    document.querySelector(".currentPen").textContent = "Current Pen: Click";
+    document.querySelector(".currentPen").textContent = "Click";
   }
 }
+document.querySelector(".opacity").addEventListener("click", () => {
+  opacityToggle();
+});
 function opacityToggle() {
   opacity = !opacity;
   if (opacity) {
-    document.querySelector("#opacity").textContent = "On";
     document.querySelector(".opacityCurrent").textContent = "Opacity: On";
   } else {
-    document.querySelector("#opacity").textContent = "Off";
     document.querySelector(".opacityCurrent").textContent = "Opacity: Off";
   }
 }
 
 function changeColor(choice) {
   color = choice;
-  document.querySelector(
-    ".currentColor"
-  ).textContent = `Current Colour: ${color}`;
+  document.querySelector(".currentColor").textContent = `${color}`;
 }
 function resetBoard() {
   let board = document.querySelector(".board");
@@ -175,19 +177,15 @@ function getAround(index) {
   return around;
 }
 
-const colorFillButton = document.querySelector("#color-fill");
+const colorFillButton = document.querySelector(".fill");
 let fill = false;
 colorFillButton.addEventListener("click", () => {
   if (fill) {
     fill = false;
     click = true;
-    colorFillButton.style.backgroundColor = "white";
-    document.querySelector(".fillCurrent").textContent = "Color Fill: Off";
   } else {
     fill = true;
     click = false;
-    colorFillButton.style.backgroundColor = "gray";
-    document.querySelector(".fillCurrent").textContent = "Color Fill: ON";
   }
 });
 function toMatrix(arr, width) {

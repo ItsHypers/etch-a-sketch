@@ -4,20 +4,22 @@
   justify-content: center;
   flex-direction: column;
   margin-top: 50px;
-  background-color: #111;
   width: 100%;
 }
 .contentFlex {
   display: flex;
+  flex: 1 0 0%;
   align-items: center;
-  justify-content: flex-end;
   border: 5px solid black;
+  width: inherit;
+  justify-content: center;
   border-radius: 20px;
   margin-top: 30px;
   background-color: rgba(57, 85, 128, 0.5);
 }
 .buttons {
   text-align: center;
+  margin-top: 5px;
   margin-right: -20px;
 }
 .rainbow-border {
@@ -66,14 +68,17 @@
 }
 .board {
   display: grid;
+  margin-top: 30px;
   min-height: 500px;
   min-width: 500px;
   width: 500px;
   height: 500px;
   position: relative;
   text-align: center;
-  border: 5px solid white;
-  background-color: rgba(224, 224, 224, 0.226);
+  border: 5px solid black;
+}
+.gridSize {
+  text-align: center;
 }
 .grid-item {
   border: none;
@@ -238,57 +243,150 @@ code {
   color: white;
   font-size: 20px;
 }
-/* The switch - the box around the slider */
-.switch {
+.switch-button {
+  background: rgba(255, 255, 255, 0.56);
+  border-radius: 30px;
+  overflow: hidden;
+  width: 240px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #155fff;
   position: relative;
-  display: inline-block;
-  width: 100px;
-  height: 34px;
+  padding-right: 120px;
+  position: relative;
 }
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
+.switch-button:before {
+  content: "Click";
   position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.opacity:before {
+  content: "On";
+}
+.fill:before {
+  content: "On";
+}
+.switch-button-checkbox {
   cursor: pointer;
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
 }
-
-.slider:before {
-  position: absolute;
+.switch-button-checkbox:checked + .switch-button-label:before {
+  transform: translateX(120px);
+  transition: transform 300ms linear;
+}
+.switch-button-checkbox + .switch-button-label {
+  position: relative;
+  padding: 15px 0;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+.switch-button-checkbox + .switch-button-label:before {
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 30px;
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.switch-button-checkbox + .switch-button-label .switch-button-label-span {
+  position: relative;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(64px);
-  -ms-transform: translateX(64px);
-  transform: translateX(64px);
+.glow-on-hover {
+  width: auto;
+  height: auto;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: rgba(57, 85, 128, 0.5);
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
 }
 
-.slider.round:before {
-  border-radius: 50%;
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(57, 85, 128, 0.5);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
