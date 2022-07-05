@@ -37,7 +37,7 @@
 
 > Held down drawing
 
-### ✨ [Demo](https://itshypers.github.io/etch-a-sketch/)
+### ✨ [Link to the Project](https://itshypers.github.io/etch-a-sketch/)
 
 ## Author
 
