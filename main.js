@@ -2,6 +2,7 @@ let color = "black";
 let click = true;
 let opacity = false;
 let hover = true;
+let Drawing = false;
 let shading = false;
 let gridSize = 0;
 let bgColor = "#ffffff";
@@ -24,19 +25,12 @@ function fillBoard(size) {
   }
 }
 boardSize(16);
-
 let mouseDown = false;
 window.onmousedown = () => {
   mouseDown = true;
-  if (mouseDown) {
-    console.log("mouse button down");
-  }
 };
 window.onmouseup = () => {
   mouseDown = false;
-  if (mouseDown) {
-    console.log("mouse button up");
-  }
 };
 function resizeCanvas(size) {
   if (size >= 200 || size <= 1000) {
@@ -54,8 +48,7 @@ function boardSize(input) {
     console.log("error");
   }
 }
-
-function colorin(e) {
+function colorin() {
   if (click) {
     if (mouseDown) {
       if (opacity) {
@@ -67,10 +60,18 @@ function colorin(e) {
         this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
       } else {
         this.style.backgroundColor = color;
-        let ogIndex = Array.from(e.target.parentElement.children).indexOf(
-          e.target
-        );
-        getAround(ogIndex);
+      }
+    }
+    if (!hover) {
+      if (opacity) {
+        this.style.opacity = 0;
+      } else {
+        this.style.opacity = "1";
+      }
+      if (color == "Rainbow") {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      } else {
+        this.style.backgroundColor = color;
       }
     }
   }

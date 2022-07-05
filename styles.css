@@ -46,6 +46,10 @@ body {
   border: 5px solid white;
   background-color: rgba(224, 224, 224, 0.226);
 }
+.grid-item {
+  border: none;
+  display: inline-block;
+}
 #buttonSave {
   background: none;
   color: inherit;
