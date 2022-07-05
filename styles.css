@@ -8,19 +8,16 @@
 }
 .contentFlex {
   display: flex;
-  flex: 1 0 0%;
   align-items: center;
   border: 5px solid black;
   width: inherit;
   justify-content: center;
   border-radius: 20px;
   margin-top: 30px;
-  background-color: rgba(57, 85, 128, 0.5);
 }
 .buttons {
   text-align: center;
   margin-top: 5px;
-  margin-right: -20px;
 }
 .rainbow-border {
   border: 10px solid;
