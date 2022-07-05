@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Sketch Pad 👋</h1>
+<h1 align="center">Welcome to Pixel Painter👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.2-blue.svg?cacheSeconds=2592000" />
 </p>
@@ -7,7 +7,7 @@
 
 <h3 align="center"> Features</h3>
 
-> Online Sketch-Pad
+> Online Pixel Canvas
 
 > Customizable Grid Size
 
