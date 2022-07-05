@@ -18,6 +18,7 @@ function fillBoard(size) {
   for (let i = 0; i < amount; i++) {
     let square = document.createElement("div");
     square.addEventListener("mouseover", colorin);
+    square.addEventListener("click", colorin);
     square.addEventListener("click", colorFill);
     square.style.backgroundColor = "white";
     square.className = "grid-item";
@@ -25,13 +26,7 @@ function fillBoard(size) {
   }
 }
 boardSize(16);
-let mouseDown = false;
-window.onmousedown = () => {
-  mouseDown = true;
-};
-window.onmouseup = () => {
-  mouseDown = false;
-};
+
 function resizeCanvas(size) {
   if (size >= 200 || size <= 1000) {
     let board = document.querySelector(".board");
@@ -48,6 +43,13 @@ function boardSize(input) {
     console.log("error");
   }
 }
+let mouseDown = false;
+document.body.onmousedown = () => {
+  mouseDown = true;
+};
+document.body.onmouseup = () => {
+  mouseDown = false;
+};
 function colorin() {
   if (click) {
     if (mouseDown) {
@@ -85,7 +87,7 @@ function penType() {
   let squares = board.querySelectorAll("div");
   if (hover) {
     squares.forEach((div) => div.addEventListener("mouseover", colorin));
-    squares.forEach((div) => div.removeEventListener("click", colorin));
+    squares.forEach((div) => div.addEventListener("click", colorin));
     document.querySelector(".currentPen").textContent = "Hover";
   } else {
     squares.forEach((div) => div.removeEventListener("mouseover", colorin));
@@ -154,27 +156,6 @@ function border(picker) {
 
 function hexChange(picker) {
   changeColor(picker.toString("hex"));
-}
-
-function getAround(index) {
-  let around = [];
-
-  // For Edge Condition
-  index = Number(index);
-  if (isNaN(index)) {
-    throw new Error("Index should be a number.");
-  }
-
-  const leftEdge = index % gridSize === 0; // Tile on very left edge
-  const rightEdge = (index + 1) % gridSize === 0; // Tile on right edge
-  const topEdge = Math.floor(index / gridSize) === 0; // Tile on top edge
-  const bottomEdge = Math.floor(index / gridSize) === gridSize - 1; // Tile on bottom edge
-
-  if (!leftEdge) around.push(index - 1);
-  if (!rightEdge) around.push(index + 1);
-  if (!topEdge) around.push(index - gridSize);
-  if (!bottomEdge) around.push(index + gridSize);
-  return around;
 }
 
 const colorFillButton = document.querySelector(".fill");
