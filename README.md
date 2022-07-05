@@ -35,7 +35,7 @@
 
 > Toggable Grid
 
-> Held down drawing
+> Pen Size Tool (multiple cells at once)
 
 ### ✨ [Link to the Project](https://itshypers.github.io/pixel-painter/)
 
