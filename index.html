@@ -27,8 +27,8 @@
         };
         </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="reset.css" />
     <title> </title>
   </head>
   <BODY ondragstart="return false;" ondrop="return false;"></BODY>
@@ -61,7 +61,7 @@
           </div>
         </div>
       </div>
-    <div class="flex-container">
+    <div style="border-image-slice: 1 fill;" class="flex-container rainbow-border">
         <div class="contentFlex">
         <div style="margin-top: -200px; margin-left: 20px;" class="buttons">
             <h2 style="color: white;">Pen Type Toggle</h2>
@@ -71,8 +71,10 @@
                 <span class="slider"></span>
               </label>
               <br></br>
-            <h3 style="color: white">Opacity Toggle</h3>
-            <button class="opacityText" style="border-radius: 20px;" onclick="opacityToggle()"><h2 id="opacity">Off</h2></button>
+            
+            <button class="opacityTextstyle="border-radius: 20px;" onclick="opacityToggle()">
+              <h3 style="color: white">Opacity Toggle</h3> 
+              <h2 id="opacity"> Off</h2></button>
 
             <h3 style="color: white; margin-top: 10px;">Border Colour</h3>
             <button data-jscolor="{onInput: 'border(this)'}" value="#000000">
