@@ -37,7 +37,7 @@
 
 > Held down drawing
 
-### ✨ [Link to the Project](https://itshypers.github.io/etch-a-sketch/)
+### ✨ [Link to the Project](https://itshypers.github.io/pixel-painter/)
 
 ## Author
 
